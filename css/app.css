@@ -177,3 +177,78 @@ footer a{color:var(--sub)}
 .sig{color:var(--gold);font-weight:500}
 .todo{font-family:var(--font-mono);font-size:.7rem;color:var(--ghost);opacity:.7;border-left:2px solid var(--gold);padding-left:.6rem;margin-top:.6rem}
 .contact{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;font-family:var(--font-mono);font-size:.85rem}
+
+/* ============================================================
+   Genius-profile additions (additive) — Yachay 2026-06-01
+   Doctrine v11 LOCKED 749/14/163 · Apache-2.0
+   ============================================================ */
+
+/* --- Series-A doctrine ribbon (above the fold) --- */
+.doc-ribbon{font-family:var(--font-mono);font-size:.8rem;color:var(--gold);margin-top:1.2rem;
+  border:1px solid color-mix(in srgb,var(--gold) 34%,transparent);border-radius:8px;
+  padding:.5rem .8rem;background:color-mix(in srgb,var(--gold) 7%,transparent);
+  display:inline-flex;flex-wrap:wrap;gap:.35rem .7rem;align-items:center;letter-spacing:.02em}
+.doc-ribbon b{color:var(--gold)}
+.doc-ribbon .sep{color:var(--ghost)}
+.doc-ribbon .lock{color:var(--ok)}
+
+/* --- 3D Org Map (above the fold) --- */
+#orgmap3d{width:100%;height:60vh;max-height:480px;min-height:300px;border-radius:14px;
+  border:1px solid var(--border);display:block;background:radial-gradient(circle at 50% 40%,#101a26,#070b16);
+  touch-action:none;-webkit-tap-highlight-color:transparent}
+@media(min-width:760px){#orgmap3d{height:80vh;max-height:560px}}
+.orgmap-legend{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.orgmap-leg{display:flex;align-items:center;gap:.45rem;font-family:var(--font-mono);font-size:.74rem;
+  color:var(--sub);border:1px solid var(--border);border-radius:999px;padding:.35rem .7rem;
+  background:var(--deep);min-height:34px;cursor:default}
+.orgmap-leg .swatch{width:10px;height:10px;border-radius:50%}
+.orgmap-leg .ohb{font-size:.66rem;padding:.08rem .4rem;border-radius:5px;color:var(--ghost);
+  border:1px solid var(--border)}
+.orgmap-leg .ohb.ok{color:#7fe0a8;border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+.orgmap-leg .ohb.down{color:#f0a3a3;border-color:color-mix(in srgb,var(--yawar) 40%,transparent)}
+
+/* --- live signed-receipt counter --- */
+.rc-card{display:flex;flex-direction:column;gap:.3rem;align-items:flex-start}
+.rc-val{font-family:var(--font-mono);font-weight:500;font-size:clamp(2.2rem,7vw,3.6rem);color:var(--gold);
+  line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.rc-sub{font-family:var(--font-mono);font-size:.74rem;color:var(--ghost)}
+.rc-sub b{color:var(--teal)}
+
+/* --- live Lean proof tree --- */
+.pt-wrap{display:grid;gap:.9rem;margin-top:1rem;grid-template-columns:1fr}
+@media(min-width:680px){.pt-wrap{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.pt-wrap{grid-template-columns:repeat(3,1fr)}}
+.pt-branch{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:.9rem}
+.pt-head{display:flex;flex-direction:column;gap:.15rem;margin-bottom:.6rem}
+.pt-head code{font-family:var(--font-mono);font-size:.78rem;color:var(--teal)}
+.pt-bt{font-size:.72rem;color:var(--ghost)}
+.pt-kids{display:flex;flex-direction:column;gap:.4rem}
+.pt-node{display:flex;align-items:center;gap:.5rem;min-height:38px;padding:.35rem .55rem;border-radius:8px;
+  border:1px solid var(--border);background:var(--surface);text-decoration:none}
+.pt-node:hover{text-decoration:none;border-color:var(--teal)}
+.pt-node code{font-family:var(--font-mono);font-size:.72rem;color:var(--ink);word-break:break-all;flex:1}
+.pt-dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.pt-tag{font-family:var(--font-mono);font-size:.6rem;padding:.1rem .35rem;border-radius:4px;flex:0 0 auto}
+.pt-node.proved .pt-dot{background:var(--gold);box-shadow:0 0 8px color-mix(in srgb,var(--gold) 70%,transparent)}
+.pt-node.proved .pt-tag{color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent)}
+.pt-node.open{opacity:.55}
+.pt-node.open .pt-dot{background:var(--ghost)}
+.pt-node.open .pt-tag{color:var(--ghost);border:1px solid var(--border)}
+
+/* --- What I built (commit feed) --- */
+.builtfeed{display:flex;flex-direction:column;gap:.55rem;margin-top:1rem}
+.bf-row{display:flex;gap:.7rem;align-items:baseline;padding:.55rem .7rem;border:1px solid var(--border);
+  border-radius:9px;background:var(--deep);min-height:44px}
+.bf-row .sha{font-family:var(--font-mono);font-size:.72rem;color:var(--teal);flex:0 0 auto}
+.bf-row .msg{font-size:.84rem;color:var(--sub);flex:1}
+.bf-row .repo{font-family:var(--font-mono);font-size:.66rem;color:var(--ghost)}
+.bf-row .when{font-family:var(--font-mono);font-size:.66rem;color:var(--ghost);flex:0 0 auto}
+
+/* --- How it works (architecture) --- */
+.arch{display:grid;gap:.8rem;margin-top:1rem;grid-template-columns:1fr}
+@media(min-width:760px){.arch{grid-template-columns:repeat(2,1fr)}}
+.arch .step{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.arch .step h4{font-family:var(--font-head);font-size:.95rem;margin:.1rem 0 .4rem;color:var(--ink)}
+.arch .step .tag{font-family:var(--font-mono);font-size:.66rem;color:var(--teal);text-transform:uppercase;letter-spacing:.05em}
+.arch .step p{font-size:.82rem;margin:.3rem 0 0;color:var(--sub)}
+.arch .step code{font-family:var(--font-mono);color:var(--gold);font-size:.8rem}
