@@ -66,7 +66,7 @@ if (cv) {
     if (hit) { hovered = hit.object; cv.style.cursor = 'pointer'; if (cap) cap.textContent = `khipu knot → ${hovered.userData.label}  ·  renderer: ${mode}`; }
     else { hovered = null; cv.style.cursor = 'grab'; if (cap) cap.textContent = `${counts.length} pendant cords · knots encode doctrine v11 LOCKED counts · drag to rotate · renderer: ${mode}`; }
   });
-  cv.addEventListener('click', () => { if (hovered) window.open('https://huggingface.co/spaces/SZLHOLDINGS/anatomy-3d', '_blank', 'noopener'); });
+  cv.addEventListener('click', () => { if (hovered) window.open('https://huggingface.co/spaces/SZLHOLDINGS/anatomy', '_blank', 'noopener'); });
 
   // drag to rotate
   let drag = false, px = 0, vel = 0.0025;

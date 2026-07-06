@@ -42,9 +42,9 @@ async function mintReceipt(){
    Falls back to last-known stage from a static snapshot if offline.
    ============================================================ */
 const HF_SNAPSHOT = {
-  'SZLHOLDINGS/a11oy':'starting','SZLHOLDINGS/amaru':'starting','SZLHOLDINGS/sentra':'running',
-  'SZLHOLDINGS/vessels':'running','SZLHOLDINGS/rosie':'starting','SZLHOLDINGS/anatomy-3d':'running',
-  'SZLHOLDINGS/uds-demo':'running','SZLHOLDINGS/README':'running'
+  'SZLHOLDINGS/a11oy':'running','SZLHOLDINGS/killinchu':'running','SZLHOLDINGS/hatun-mcp':'running',
+  'SZLHOLDINGS/immune':'running','SZLHOLDINGS/holographic':'running','SZLHOLDINGS/anatomy':'running',
+  'SZLHOLDINGS/README':'running'
 };
 function stageClass(s){s=(s||'').toUpperCase();
   if(s==='RUNNING')return['running','RUNNING'];
