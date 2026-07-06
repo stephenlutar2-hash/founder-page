@@ -7,7 +7,7 @@
 (function () {
   const el = document.getElementById('receipt-counter');
   if (!el) return;
-  const ORGANS = ['amaru', 'sentra', 'rosie', 'killinchu', 'a11oy'];
+  const ORGANS = ['a11oy', 'killinchu', 'hatun-mcp', 'immune', 'holographic'];
   const valEl = el.querySelector('.rc-val');
   const subEl = el.querySelector('.rc-sub');
 

@@ -11,7 +11,7 @@
 <meta name="robots" content="index,follow">
 <!-- sovereign + privacy-preserving: no analytics, no trackers, no cookies, self-hosted assets -->
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<!-- Inca avatar (Amaru) · additive · Yachay · 2026-06-01.
+<!-- Animated avatar · additive · Yachay · 2026-06-01.
      Adds animated GIF as an alternate favicon + social share image (og/twitter).
      Existing assets/favicon.svg and assets/kanchay-glyph.svg are untouched. -->
 <link rel="icon" href="assets/szl-avatar-animated.gif" type="image/gif" sizes="400x400">
@@ -81,13 +81,13 @@
     <p>An interactive 3D chord map of the SZL mesh. Five organ nodes, the Wire D/E/F/G traces that
        carry receipts between them, and a heartbeat pulse driven by each organ's <code>/healthz</code>
        (polled every 5&nbsp;seconds). Drag to rotate; tap a node to open its Space.</p>
-    <canvas id="orgmap3d" aria-label="Interactive 3D map of the five SZL organs (amaru, sentra, rosie, killinchu, a11oy) connected by live mesh wires; drag to rotate, tap a node to open its Space"></canvas>
+    <canvas id="orgmap3d" aria-label="Interactive 3D map of the five SZL organs (a11oy, killinchu, hatun-mcp, immune, holographic) connected by live mesh wires; drag to rotate, tap a node to open its Space"></canvas>
     <div class="orgmap-legend" aria-label="organ health legend">
-      <span class="orgmap-leg" data-organ="amaru"><span class="swatch" style="background:#e4cf99"></span>amaru <span class="ohb">…</span></span>
-      <span class="orgmap-leg" data-organ="sentra"><span class="swatch" style="background:#5cc4bf"></span>sentra <span class="ohb">…</span></span>
-      <span class="orgmap-leg" data-organ="rosie"><span class="swatch" style="background:#ff9a7a"></span>rosie <span class="ohb">…</span></span>
-      <span class="orgmap-leg" data-organ="killinchu"><span class="swatch" style="background:#8fb6ff"></span>killinchu <span class="ohb">…</span></span>
       <span class="orgmap-leg" data-organ="a11oy"><span class="swatch" style="background:#d4a444"></span>a11oy <span class="ohb">…</span></span>
+      <span class="orgmap-leg" data-organ="killinchu"><span class="swatch" style="background:#8fb6ff"></span>killinchu <span class="ohb">…</span></span>
+      <span class="orgmap-leg" data-organ="hatun-mcp"><span class="swatch" style="background:#5cc4bf"></span>hatun-mcp <span class="ohb">…</span></span>
+      <span class="orgmap-leg" data-organ="immune"><span class="swatch" style="background:#ff9a7a"></span>immune <span class="ohb">…</span></span>
+      <span class="orgmap-leg" data-organ="holographic"><span class="swatch" style="background:#e4cf99"></span>holographic <span class="ohb">…</span></span>
     </div>
     <div class="cap">Wire D/E/F/G are the real inter-organ receipt traces. Health badges read each organ's live <code>/healthz</code> from this device; when an organ is unreachable from your network the badge shows “—”.</div>
   </section>
@@ -313,16 +313,15 @@ theorem huklla_penalty_collapses
   <section class="entry" id="flagships">
     <div class="stamp"><span class="dot"></span> flagships · live status from HF</div>
     <h2>The fleet</h2>
-    <p>Five flagships, two 3D Spaces, one org card. Each status badge is polled live from Hugging Face
+    <p>Five flagships, one 3D Space, one org card. Each status badge is polled live from Hugging Face
        (with a sovereign offline fallback to last-known stage).</p>
     <div class="grid c2">
-      <div class="panel flag" data-space="SZLHOLDINGS/a11oy"><div class="thumb">a</div><div><h3>a11oy <span class="badge starting">…</span></h3><p>Unified open-LLM router + governance substrate.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/a11oy" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/amaru"><div class="thumb">A</div><div><h3>amaru <span class="badge starting">…</span></h3><p>Memory + attestation conduit.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/amaru" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/sentra"><div class="thumb">S</div><div><h3>sentra <span class="badge running">…</span></h3><p>Security gates + tripwire enforcement.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/sentra" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/vessels"><div class="thumb">V</div><div><h3>vessels <span class="badge running">…</span></h3><p>Receipt-chained transport + session fabric.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/vessels" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/rosie"><div class="thumb">R</div><div><h3>rosie <span class="badge starting">…</span></h3><p>Operator console + live mesh dashboard.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/rosie" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/anatomy-3d"><div class="thumb">3D</div><div><h3>anatomy-3d <span class="badge running">…</span></h3><p>3D anatomy Space — the cathedral entry point.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/anatomy-3d" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/uds-demo"><div class="thumb">3D</div><div><h3>uds-demo <span class="badge running">…</span></h3><p>Unified deployment / mesh demo (3D).</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/uds-demo" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/a11oy"><div class="thumb">a</div><div><h3>a11oy <span class="badge starting">…</span></h3><p>Governed-inference command platform — open-LLM router + governance substrate.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/a11oy" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/killinchu"><div class="thumb">K</div><div><h3>killinchu <span class="badge running">…</span></h3><p>Maritime / drone C2 — counter-UAS drone intelligence.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/killinchu" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/hatun-mcp"><div class="thumb">H</div><div><h3>hatun-mcp <span class="badge running">…</span></h3><p>MCP control surface for the mesh.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/hatun-mcp" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/immune"><div class="thumb">I</div><div><h3>immune <span class="badge running">…</span></h3><p>Security gates + tripwire enforcement.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/immune" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/holographic"><div class="thumb">◇</div><div><h3>holographic <span class="badge running">…</span></h3><p>Holographic surfaces demo Space.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/holographic" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/anatomy"><div class="thumb">3D</div><div><h3>anatomy <span class="badge running">…</span></h3><p>3D anatomy Space — the cathedral entry point.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/anatomy" target="_blank" rel="noopener">open space →</a></div></div>
       <div class="panel flag" data-space="SZLHOLDINGS/README"><div class="thumb">◆</div><div><h3>org card <span class="badge running">…</span></h3><p>The empire's ledger — distinct from this notebook by design.</p><a href="https://huggingface.co/SZLHOLDINGS" target="_blank" rel="noopener">open org →</a></div></div>
     </div>
   </section>

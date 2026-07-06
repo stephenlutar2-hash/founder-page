@@ -49,7 +49,7 @@ Generated; do not hand-edit. Source: COLOR_TOKENS.json */
   --color-warning: #c08f2f;
   --color-error: #c0392b;
   --color-info: #2f7fb5;
-  /* canonical surfaces (a11oy dark theme — also consumed by amaru/sentra/killinchu/rosie) */
+  /* canonical surfaces (a11oy dark theme — shared across the SZL flagships) */
   --color-a11oy-bg: #0a0f1e;
   --color-a11oy-deep: #10151c;
   --color-a11oy-surface: #1b222c;

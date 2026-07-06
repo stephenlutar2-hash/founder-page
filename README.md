@@ -7,7 +7,7 @@
 
 **Stephen Lutar — The Provenanced Notebook.** Founder page for Stephen P. Lutar Jr., Founder & CEO of SZL Holdings.
 
-Live at: **https://szl-holdings.github.io/founder-page/**
+Live at: **https://stephenlutar2-hash.github.io/founder-page/**
 
 ---
 

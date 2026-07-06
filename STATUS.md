@@ -7,7 +7,7 @@
 
 ## What's Live
 
-- **Founder profile page** — deployed at <https://szl-holdings.github.io/founder-page/>
+- **Founder profile page** — deployed at <https://stephenlutar2-hash.github.io/founder-page/>
 - **Sponsor link target** — `funding.yml` routes GitHub Sponsors button to this page
 
 ## What's Experimental

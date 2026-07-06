@@ -12,11 +12,11 @@ if (cv) {
   const PR = Math.min(devicePixelRatio || 1, SZL_MOBILE ? 1.5 : 2);
 
   const ORGANS = [
-    { id:'amaru',     label:'amaru',     color:0xe4cf99 },
-    { id:'sentra',    label:'sentra',    color:0x5cc4bf },
-    { id:'rosie',     label:'rosie',     color:0xff9a7a },
-    { id:'killinchu', label:'killinchu', color:0x8fb6ff },
-    { id:'a11oy',     label:'a11oy',     color:0xd4a444 },
+    { id:'a11oy',       label:'a11oy',       color:0xd4a444 },
+    { id:'killinchu',   label:'killinchu',   color:0x8fb6ff },
+    { id:'hatun-mcp',   label:'hatun-mcp',   color:0x5cc4bf },
+    { id:'immune',      label:'immune',      color:0xff9a7a },
+    { id:'holographic', label:'holographic', color:0xe4cf99 },
   ];
 
   const renderer = new THREE.WebGLRenderer({ canvas:cv, antialias:!SZL_MOBILE, alpha:true,
