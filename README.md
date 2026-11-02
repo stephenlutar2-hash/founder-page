@@ -13,9 +13,9 @@ Live at: **https://stephenlutar2-hash.github.io/founder-page/**
 
 ## What this is
 
-A public founder page that is itself a demonstration of the thesis: every interaction mints a DSSE-signed Khipu receipt, the proof tree is rendered live from `lutar-lean`, and the trust formula is interactive. The page proves its own claims rather than just stating them.
+A public founder page that demonstrates evidence boundaries in the browser. Each page load computes an ephemeral SHA-256 visit token locally; the token is not signed, persisted, or appended to a Khipu receipt chain. The proof view fetches selected `lutar-lean` sources, and the trust formula is interactive.
 
-## Ground truth (Doctrine v11 LOCKED — kernel `c7c0ba17`)
+## Ground truth (Doctrine v11 LOCKED - snapshot `c7c0ba17c2eaec60ad38ea9172b4a0d9ca0b582f`)
 
 | Metric | Value |
 |---|---|
@@ -28,7 +28,7 @@ A public founder page that is itself a demonstration of the thesis: every intera
 | Λ uniqueness | **Conjecture 1** (unconditional = machine-checked false; conditional = proven axiom-free) |
 | SLSA posture | L1 honest + L2 build-attestation present · L2-verified / L3 / FedRAMP = roadmap |
 
-Source of truth: [`szl-holdings/lutar-lean@main`](https://github.com/szl-holdings/lutar-lean)
+Source snapshot: [`szl-holdings/lutar-lean@c7c0ba17c2eaec60ad38ea9172b4a0d9ca0b582f`](https://github.com/szl-holdings/lutar-lean/tree/c7c0ba17c2eaec60ad38ea9172b4a0d9ca0b582f). Current `main` may have changed since this locked snapshot.
 
 ## Products
 
@@ -44,7 +44,7 @@ Source of truth: [`szl-holdings/lutar-lean@main`](https://github.com/szl-holding
 
 ## Honest posture
 
-This repo does **not** claim "183 proven," "fully verified," "Λ proven," "SLSA L2 verified," or "L3." All counts above are reproducible from `lutar-lean@main`. Λ uniqueness is Conjecture 1 — stated and tracked as an open problem.
+This repo does **not** claim "183 proven," "fully verified," "Λ proven," "SLSA L2 verified," or "L3." The counts above bind to the immutable snapshot named above. Λ uniqueness is Conjecture 1 - stated and tracked as an open problem. Browser visit tokens demonstrate local hashing only; they are not evidence of backend execution or receipt signing.
 
 ---
 

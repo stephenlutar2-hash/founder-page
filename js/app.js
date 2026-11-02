@@ -4,37 +4,30 @@
    Signed: Yachay. */
 
 /* ============================================================
-   GENIUS FEATURE #4 — Khipu receipt of THIS visit
-   Every page load mints an anonymous, PII-free receipt and shows
-   "you are receipt #N in the chain." Hash derived client-side from
-   a per-load salt + the page + the minute bucket. Never stored, never sent.
+   Local visit token
+   Every page load computes an anonymous, PII-free SHA-256 token from
+   a per-load salt + the page + the minute bucket. It is not a signature,
+   a persisted receipt, or a chain entry. It is never stored or sent.
    ============================================================ */
 async function sha256hex(str){
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-// deterministic "chain index" that advances ~once per minute since doctrine epoch,
-// so the number is meaningful (monotone) without storing any visitor data.
-function chainIndex(){
-  const epoch = Date.UTC(2026,5,1,0,0,0); // doctrine v11 lock window
-  return 749 + Math.floor((Date.now()-epoch)/60000); // seeds from the 749 declarations
 }
 async function mintReceipt(){
   const salt = crypto.getRandomValues(new Uint32Array(2)).join('-'); // ephemeral, never persisted
   const minute = Math.floor(Date.now()/60000);
   const payload = `${salt}|${location.pathname}|${minute}|provenanced-notebook`;
   const full = await sha256hex(payload);
-  const idx = chainIndex();
   const el = document.getElementById('receipt');
   if(el){
-    el.querySelector('.idx').textContent = '#'+idx.toLocaleString();
+    el.querySelector('.idx').textContent = 'SHA-256';
     el.querySelector('.rh').textContent = full.slice(0,12);
-    el.title = `Khipu receipt for this visit (privacy-preserving, computed locally, never stored)\n`+
-               `chain index: ${idx}\nreceipt hash: ${full}\nminted: ${new Date().toISOString()}`;
-    el.dataset.full = full; el.dataset.idx = idx;
+    el.title = `Ephemeral visit token (computed locally, never stored or signed)\n`+
+               `SHA-256: ${full}\ncomputed: ${new Date().toISOString()}`;
+    el.dataset.full = full;
   }
   // also seed the visit node into the journal "today" line if present
-  return {idx, full};
+  return {full};
 }
 
 /* ============================================================
@@ -42,8 +35,8 @@ async function mintReceipt(){
    Falls back to last-known stage from a static snapshot if offline.
    ============================================================ */
 const HF_SNAPSHOT = {
-  'SZLHOLDINGS/a11oy':'running','SZLHOLDINGS/killinchu':'running','SZLHOLDINGS/hatun-mcp':'running',
-  'SZLHOLDINGS/immune':'running','SZLHOLDINGS/holographic':'running','SZLHOLDINGS/anatomy':'running',
+  'SZLHOLDINGS/a11oy':'running','SZLHOLDINGS/killinchu':'running','SZLHOLDINGS/immune':'running',
+  'SZLHOLDINGS/szl-constellation':'running','SZLHOLDINGS/szl-frontier':'running',
   'SZLHOLDINGS/README':'running'
 };
 function stageClass(s){s=(s||'').toUpperCase();
@@ -290,6 +283,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   initBench();        // needs katex
   initLeanWorker();
   initThm();
-  // re-mint receipt on each visibility return to feel alive (still PII-free)
+  // Recompute the ephemeral token after each visibility return (still PII-free).
   document.addEventListener('visibilitychange',()=>{if(!document.hidden) mintReceipt();});
 });

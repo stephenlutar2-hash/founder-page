@@ -1,13 +1,12 @@
-/* Live signed-receipt counter — sums `*_receipts_total` from each flagship's
+/* Live reported-receipt counter — sums `*_receipts_total` from each flagship's
    Prometheus /metrics endpoint across the five organs, polling every 8s.
-   Reed-Solomon parity protects the Khipu chain on disk (it is error-correcting
-   coding, not "holographic" — no mystical claims). Event-sourced append-only log
-   (not "time travel"). Quechua names are brand naming only.
+   These are service-reported counters. This page does not validate receipt
+   signatures, append-only storage, or persistence guarantees.
    Apache-2.0 · Signed Yachay <yachay@szlholdings.dev> · Doctrine v11 LOCKED 749/14/163. */
 (function () {
   const el = document.getElementById('receipt-counter');
   if (!el) return;
-  const ORGANS = ['a11oy', 'killinchu', 'hatun-mcp', 'immune', 'holographic'];
+  const ORGANS = ['a11oy', 'killinchu', 'immune', 'szl-constellation', 'szl-frontier'];
   const valEl = el.querySelector('.rc-val');
   const subEl = el.querySelector('.rc-sub');
 
@@ -47,11 +46,11 @@
     }));
     if (live > 0) {
       animateTo(total);
-      subEl.innerHTML = `signed Khipu receipts · summed live from <b>${live}/5</b> organs’ <code>/metrics</code> · Reed-Solomon parity on disk`;
+      subEl.innerHTML = `reported receipt metrics · summed live from <b>${live}/5</b> reachable organs’ <code>/metrics</code> endpoints · signatures not verified here`;
     } else {
       // sovereign offline fallback — be honest, do not fabricate a number
       valEl.textContent = '—';
-      subEl.innerHTML = `organs unreachable from this device — counters live at each <code>/metrics</code>; the chain is append-only & RS-coded.`;
+      subEl.innerHTML = `organs unreachable from this device — no receipt metric was observed by this page.`;
     }
   }
   poll(); setInterval(poll, 8000);
