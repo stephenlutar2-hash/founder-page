@@ -11,16 +11,20 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   sbom:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v7.0.1
+      - name: Check out exact revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Generate SBOM (SPDX JSON)
-        uses: anchore/sbom-action@v0
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
         with:
           path: .
           format: spdx-json
@@ -28,23 +32,49 @@ jobs:
           artifact-name: SBOM.spdx.json
 
       - name: Upload SBOM artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: sbom-spdx-json
           path: SBOM.spdx.json
 
-      - name: Commit SBOM to attestations branch (nightly only)
-        if: github.event_name == 'schedule'
+  publish-attestation-branch:
+    if: github.event_name == 'schedule'
+    needs: sbom
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Check out source for authenticated push
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Download generated SBOM
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: sbom-spdx-json
+          path: ${{ runner.temp }}/sbom
+
+      - name: Commit SBOM to attestations branch
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
+          artifact="$RUNNER_TEMP/sbom/SBOM.spdx.json"
+          test -s "$artifact"
+
           git config user.name "Yachay"
           git config user.email "yachay@szlholdings.dev"
-          git fetch origin attestations || true
-          git checkout attestations 2>/dev/null || git checkout --orphan attestations
-          git rm -rf . >/dev/null 2>&1 || true
-          git checkout ${{ github.sha }} -- SBOM.spdx.json 2>/dev/null || true
-          # SBOM.spdx.json is already in workspace from the generate step:
-          cp -f $GITHUB_WORKSPACE/SBOM.spdx.json . 2>/dev/null || true
-          git add SBOM.spdx.json || true
-          git commit -m "chore(sbom): nightly SBOM $(date -u +%F)\n\nDoctrine v11 LOCKED 749/14/163 locked_at c7c0ba17\n\nCo-Authored-By: Perplexity Computer Agent <agent@perplexity.ai>" || echo "no changes"
-          git push origin attestations || echo "push skipped"
+          git fetch origin refs/heads/attestations:refs/remotes/origin/attestations
+          git checkout -B attestations origin/attestations
+          git rm -rf .
+          cp "$artifact" SBOM.spdx.json
+          git add SBOM.spdx.json
+
+          if git diff --cached --quiet; then
+            echo "SBOM unchanged; attestations branch already current."
+            exit 0
+          fi
+
+          git commit \
+            -m "chore(sbom): nightly SBOM $(date -u +%F)" \
+            -m "Doctrine v11 LOCKED 749/14/163 locked_at c7c0ba17"
+          git push origin HEAD:attestations
