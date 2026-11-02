@@ -1,6 +1,6 @@
-/* SZL Org Map — interactive 3D chord/node diagram of the five organs.
-   5 organ nodes connected by live Wire D/E/F/G traces; receipt-count pulses
-   poll each flagship /healthz every 5s (real-time mesh heartbeat).
+/* SZL public runtime map - interactive 3D chord/node diagram of five public Spaces.
+   Nodes poll each Space's /healthz every 5s. Chords are a visual portfolio map
+   and do not assert live network connectivity or receipt transfer.
    Self-hosted Three.js, touch-rotate, mobile-first, prefers-reduced-motion aware.
    Apache-2.0 · Signed Yachay <yachay@szlholdings.dev> · Doctrine v11 LOCKED 749/14/163. */
 import * as THREE from '../assets/three.module.min.js';
@@ -14,9 +14,9 @@ if (cv) {
   const ORGANS = [
     { id:'a11oy',       label:'a11oy',       color:0xd4a444 },
     { id:'killinchu',   label:'killinchu',   color:0x8fb6ff },
-    { id:'hatun-mcp',   label:'hatun-mcp',   color:0x5cc4bf },
     { id:'immune',      label:'immune',      color:0xff9a7a },
-    { id:'holographic', label:'holographic', color:0xe4cf99 },
+    { id:'szl-constellation', label:'constellation', color:0x5cc4bf },
+    { id:'szl-frontier', label:'frontier', color:0xe4cf99 },
   ];
 
   const renderer = new THREE.WebGLRenderer({ canvas:cv, antialias:!SZL_MOBILE, alpha:true,
@@ -42,13 +42,13 @@ if (cv) {
     root.add(m); nodes.push(m);
   });
 
-  // chord edges between every pair (the mesh wiring) + labelled Wire D/E/F/G on the ring
+  // Visual chord edges between every pair and labelled portfolio pulses on the ring.
   const edgeMat = new THREE.LineBasicMaterial({ color:0xd4a444, transparent:true, opacity:0.32 });
   const segs=[];
   for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){ segs.push(nodes[i].position, nodes[j].position); }
   root.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(segs), edgeMat));
 
-  // Wire D/E/F/G traveling pulses along the outer ring (adjacent edges)
+  // Traveling visual pulses along the outer ring (adjacent edges).
   const wireNames=['D','E','F','G','C'];
   const pulses = nodes.map((n,i)=>{
     const m = new THREE.Mesh(new THREE.SphereGeometry(0.09,10,10),
@@ -76,7 +76,7 @@ if (cv) {
     if(hit) window.open('https://huggingface.co/spaces/SZLHOLDINGS/'+hit.object.userData.organ.id,'_blank','noopener');
   });
 
-  // live /healthz polling -> pulse the node + update legend
+  // Public /healthz polling -> pulse the node + update legend.
   function poll(){
     ORGANS.forEach((o,i)=>{
       fetch('https://szlholdings-'+o.id+'.hf.space/healthz',{mode:'cors',cache:'no-store'})

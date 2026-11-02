@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0a0e14">
 <title>Stephen Lutar — The Provenanced Notebook</title>
-<meta name="description" content="The interior of one mind: formulas you can rearrange, proofs you can re-check, this morning's thought — and a Khipu receipt proving you were here.">
+<meta name="description" content="The interior of one mind: formulas you can rearrange, proofs you can re-check, and an ephemeral SHA-256 visit token computed in your browser.">
 <meta name="robots" content="index,follow">
 <!-- sovereign + privacy-preserving: no analytics, no trackers, no cookies, self-hosted assets -->
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -17,7 +17,7 @@
 <link rel="icon" href="assets/szl-avatar-animated.gif" type="image/gif" sizes="400x400">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stephen Lutar — The Provenanced Notebook">
-<meta property="og:description" content="The interior of one mind: formulas you can rearrange, proofs you can re-check, and a Khipu receipt proving you were here.">
+<meta property="og:description" content="The interior of one mind: formulas you can rearrange, proofs you can re-check, and an ephemeral SHA-256 visit token computed in your browser.">
 <meta property="og:image" content="assets/szl-avatar-animated.gif">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="assets/szl-avatar-animated.gif">
@@ -43,7 +43,7 @@
     </nav>
     <div class="receipt" id="receipt" tabindex="0">
       <span class="live" aria-hidden="true"></span>
-      you are receipt <b class="idx">#…</b> · <span class="rh hash">…</span>
+      local visit token <b class="idx">SHA-256</b> · <span class="rh hash">…</span>
     </div>
   </div>
 </header>
@@ -69,27 +69,27 @@
     </div>
     <p style="margin-top:1.3rem;color:var(--ghost);font-family:var(--font-mono);font-size:.8rem">
       This is not a résumé. It is the inside of the workshop. Everything below <em>runs</em>:
-      the formula computes, the theorem re-checks in a kernel, and your visit just minted a receipt
-      <span class="hash" id="echoreceipt"></span> in the same Khipu chain the work is about.
+      the formula computes, selected theorem sources can be checked, and your browser just computed an ephemeral token
+      <span class="hash" id="echoreceipt"></span>. It is not signed, stored, or appended to a backend receipt chain.
     </p>
   </section>
 
   <!-- ===================== 3D ORG MAP (above the fold) ===================== -->
   <section class="entry" id="orgmap">
-    <div class="stamp"><span class="dot"></span> org map · live mesh · 3D</div>
-    <h2>The five organs, wired live</h2>
-    <p>An interactive 3D chord map of the SZL mesh. Five organ nodes, the Wire D/E/F/G traces that
-       carry receipts between them, and a heartbeat pulse driven by each organ's <code>/healthz</code>
-       (polled every 5&nbsp;seconds). Drag to rotate; tap a node to open its Space.</p>
-    <canvas id="orgmap3d" aria-label="Interactive 3D map of the five SZL organs (a11oy, killinchu, hatun-mcp, immune, holographic) connected by live mesh wires; drag to rotate, tap a node to open its Space"></canvas>
+    <div class="stamp"><span class="dot"></span> public runtime map · live health · 3D</div>
+    <h2>Five public runtime surfaces</h2>
+    <p>An interactive 3D map of five public SZL Spaces. Each node polls that Space's public
+       <code>/healthz</code> endpoint every 5&nbsp;seconds. The connecting chords are a visual portfolio map;
+       they do not assert live network traffic between services. Drag to rotate; tap a node to open its Space.</p>
+    <canvas id="orgmap3d" aria-label="Interactive 3D map of five public SZL Spaces: a11oy, killinchu, immune, szl-constellation, and szl-frontier; drag to rotate, tap a node to open its Space"></canvas>
     <div class="orgmap-legend" aria-label="organ health legend">
       <span class="orgmap-leg" data-organ="a11oy"><span class="swatch" style="background:#d4a444"></span>a11oy <span class="ohb">…</span></span>
       <span class="orgmap-leg" data-organ="killinchu"><span class="swatch" style="background:#8fb6ff"></span>killinchu <span class="ohb">…</span></span>
-      <span class="orgmap-leg" data-organ="hatun-mcp"><span class="swatch" style="background:#5cc4bf"></span>hatun-mcp <span class="ohb">…</span></span>
       <span class="orgmap-leg" data-organ="immune"><span class="swatch" style="background:#ff9a7a"></span>immune <span class="ohb">…</span></span>
-      <span class="orgmap-leg" data-organ="holographic"><span class="swatch" style="background:#e4cf99"></span>holographic <span class="ohb">…</span></span>
+      <span class="orgmap-leg" data-organ="szl-constellation"><span class="swatch" style="background:#5cc4bf"></span>constellation <span class="ohb">…</span></span>
+      <span class="orgmap-leg" data-organ="szl-frontier"><span class="swatch" style="background:#e4cf99"></span>frontier <span class="ohb">…</span></span>
     </div>
-    <div class="cap">Wire D/E/F/G are the real inter-organ receipt traces. Health badges read each organ's live <code>/healthz</code> from this device; when an organ is unreachable from your network the badge shows “—”.</div>
+    <div class="cap">Health badges read each public Space's <code>/healthz</code> from this device. A badge shows “—” when the endpoint is unreachable; the chords are visual grouping only.</div>
   </section>
 
   <!-- ===================== TODAY ===================== -->
@@ -120,13 +120,13 @@
     <div class="builtfeed" id="builtfeed"><div class="cap">loading recent commits from GitHub…</div></div>
   </section>
 
-  <!-- ===================== LIVE SIGNED-RECEIPT COUNTER ===================== -->
+  <!-- ===================== LIVE REPORTED-RECEIPT COUNTER ===================== -->
   <section class="entry" id="receipts">
     <div class="stamp"><span class="dot"></span> receipts · live counter</div>
-    <h2>Signed receipts, minted across the mesh</h2>
-    <p>Every governed action emits a signed Khipu receipt. This counter sums the
-       <code>*_receipts_total</code> metric from each organ's <code>/metrics</code> endpoint, live.
-       The chain is append-only and Reed-Solomon coded on disk — error-correcting parity, not magic.</p>
+    <h2>Receipt metrics reported by the mesh</h2>
+    <p>This counter sums public <code>*_receipts_total</code> metrics returned by reachable organ
+       <code>/metrics</code> endpoints. The page reports those service counters as observed; it does not
+       verify receipt signatures, append-only storage, or Reed-Solomon persistence.</p>
     <div class="panel">
       <div class="rc-card" id="receipt-counter">
         <div class="rc-val">…</div>
@@ -313,15 +313,14 @@ theorem huklla_penalty_collapses
   <section class="entry" id="flagships">
     <div class="stamp"><span class="dot"></span> flagships · live status from HF</div>
     <h2>The fleet</h2>
-    <p>Five flagships, one 3D Space, one org card. Each status badge is polled live from Hugging Face
+    <p>Five public runtime surfaces and one org card. Each status badge is polled live from Hugging Face
        (with a sovereign offline fallback to last-known stage).</p>
     <div class="grid c2">
       <div class="panel flag" data-space="SZLHOLDINGS/a11oy"><div class="thumb">a</div><div><h3>a11oy <span class="badge starting">…</span></h3><p>Governed-inference command platform — open-LLM router + governance substrate.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/a11oy" target="_blank" rel="noopener">open space →</a></div></div>
       <div class="panel flag" data-space="SZLHOLDINGS/killinchu"><div class="thumb">K</div><div><h3>killinchu <span class="badge running">…</span></h3><p>Maritime / drone C2 — counter-UAS drone intelligence.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/killinchu" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/hatun-mcp"><div class="thumb">H</div><div><h3>hatun-mcp <span class="badge running">…</span></h3><p>MCP control surface for the mesh.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/hatun-mcp" target="_blank" rel="noopener">open space →</a></div></div>
       <div class="panel flag" data-space="SZLHOLDINGS/immune"><div class="thumb">I</div><div><h3>immune <span class="badge running">…</span></h3><p>Security gates + tripwire enforcement.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/immune" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/holographic"><div class="thumb">◇</div><div><h3>holographic <span class="badge running">…</span></h3><p>Holographic surfaces demo Space.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/holographic" target="_blank" rel="noopener">open space →</a></div></div>
-      <div class="panel flag" data-space="SZLHOLDINGS/anatomy"><div class="thumb">3D</div><div><h3>anatomy <span class="badge running">…</span></h3><p>3D anatomy Space — the cathedral entry point.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/anatomy" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/szl-constellation"><div class="thumb">C</div><div><h3>szl-constellation <span class="badge running">…</span></h3><p>Public estate map with explicit source and runtime boundaries.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/szl-constellation" target="_blank" rel="noopener">open space →</a></div></div>
+      <div class="panel flag" data-space="SZLHOLDINGS/szl-frontier"><div class="thumb">F</div><div><h3>szl-frontier <span class="badge running">…</span></h3><p>Public frontier portfolio and evidence surface.</p><a href="https://huggingface.co/spaces/SZLHOLDINGS/szl-frontier" target="_blank" rel="noopener">open space →</a></div></div>
       <div class="panel flag" data-space="SZLHOLDINGS/README"><div class="thumb">◆</div><div><h3>org card <span class="badge running">…</span></h3><p>The empire's ledger — distinct from this notebook by design.</p><a href="https://huggingface.co/SZLHOLDINGS" target="_blank" rel="noopener">open org →</a></div></div>
     </div>
   </section>
@@ -342,7 +341,7 @@ theorem huklla_penalty_collapses
 
   <footer>
     <p>Sovereign by design — self-hosted fonts, math, and 3D; no analytics, no cookies, no trackers; GDPR-safe by construction.
-       Your Khipu receipt was computed locally and never left this device.</p>
+       Your ephemeral visit token was computed locally and never left this device.</p>
     <p>Built with Three.js · KaTeX · vanilla ES modules. Open assets only (SIL OFL / Apache-2.0).
        WebGPU Baseline Jan-2026 with WebGL2 fallback. — signed <span class="sig">Yachay</span>.</p>
   </footer>
@@ -386,9 +385,9 @@ theorem huklla_penalty_collapses
   }catch(e){
     tgt.innerHTML='<span style="color:var(--ghost)">offline — last known: szl-holdings/a11oy main · doctrine v11 lock window (2026-06-01)</span>';
   }
-  // echo this visit's receipt hash into the hero line once minted
+  // Echo the local visit token into the hero line once computed.
   const rec=document.getElementById('receipt');
-  const sync=()=>{ if(rec.dataset.full && echo){echo.textContent='#'+Number(rec.dataset.idx).toLocaleString()+' · '+rec.dataset.full.slice(0,10);} };
+  const sync=()=>{ if(rec.dataset.full && echo){echo.textContent='sha256:'+rec.dataset.full.slice(0,10);} };
   setTimeout(sync,400); setTimeout(sync,1200);
 })();
 

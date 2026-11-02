@@ -1,0 +1,41 @@
+name: Claim boundaries
+
+on:
+  pull_request:
+    paths:
+      - README.md
+      - STATUS.md
+      - SECURITY.md
+      - index.html
+      - js/app.js
+      - js/receipts.js
+      - scripts/verify_claim_boundaries.py
+      - .github/workflows/claim-boundaries.yml
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+      - STATUS.md
+      - SECURITY.md
+      - index.html
+      - js/app.js
+      - js/receipts.js
+      - scripts/verify_claim_boundaries.py
+      - .github/workflows/claim-boundaries.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify-claim-boundaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Verify evidence boundaries
+        run: python3 scripts/verify_claim_boundaries.py

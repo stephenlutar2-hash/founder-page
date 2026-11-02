@@ -6,7 +6,7 @@ Thank you for contributing to SZL Holdings.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/szl-holdings/founder-page.git
+   git clone https://github.com/stephenlutar2-hash/founder-page.git
    cd founder-page
    ```
 2. Install dependencies:
